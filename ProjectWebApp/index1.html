@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การรถไฟแห่งประเทศไทย</title>
+    <link rel="stylesheet" href="styles1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+</head>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const username = localStorage.getItem("username");
+      const userActions = document.querySelector(".user-actions");
+  
+      if (username && userActions) {
+        // ล้างปุ่มเดิม
+        userActions.innerHTML = "";
+  
+        // สร้าง element ชื่อผู้ใช้
+        const nameTag = document.createElement("span");
+        
+        nameTag.innerHTML = `<i class="fa-solid fa-user" style="font-size: 18px; color: #333;"></i> <span style="font-size: 16px;">${username}</span>`;
+        nameTag.style.display = "inline-flex";
+        nameTag.style.alignItems = "center";
+        nameTag.style.gap = "10px"; // ช่องว่างระหว่างไอคอนกับชื่อ
+        nameTag.style.marginRight = "10px";
+        nameTag.style.padding = "10px 16px";
+        nameTag.style.backgroundColor = "#f0f0f0";
+        nameTag.style.borderRadius = "20px";
+        nameTag.style.fontWeight = "bold";
+        nameTag.style.color = "#333";
+        nameTag.style.boxShadow = "0 2px 6px rgba(0, 0, 0, 0.1)";
+
+  
+        // สร้างปุ่ม logout
+        const logoutBtn = document.createElement("a");
+        logoutBtn.href = "#";
+        logoutBtn.innerHTML = `<i class="fa-solid fa-arrow-right-from-bracket"></i> <span data-translate="logout">ออกจากระบบ</span>`;
+        logoutBtn.style.color = "white";
+        logoutBtn.style.backgroundColor = "red";
+        logoutBtn.style.padding = "10px 15px";
+        logoutBtn.style.borderRadius = "8px";
+        logoutBtn.style.border = "none";
+        logoutBtn.style.fontWeight = "bold";
+        logoutBtn.style.cursor = "pointer";
+        logoutBtn.style.transition = "all 0.3s ease";
+        
+        logoutBtn.addEventListener("mouseover", () => {
+        logoutBtn.style.backgroundColor = "darkred";
+});
+logoutBtn.addEventListener("mouseout", () => {
+    logoutBtn.style.backgroundColor = "red";
+});
+
+        logoutBtn.addEventListener("click", () => {
+          localStorage.removeItem("username");
+          location.reload(); // รีโหลดหน้าเพื่อกลับไปแสดงปุ่มล็อกอิน
+        });
+  
+        // เพิ่มเข้า div user-actions
+        userActions.appendChild(nameTag);
+        userActions.appendChild(logoutBtn);
+      }
+    });
+  </script>
+<body>
+    <header class="header">
+        <img src="logo1.png" alt="State Railway of Thailand" class="logo">
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index1.html" data-translate="Home"><i class="fa-solid fa-house"></i> หน้าหลัก</a></li>
+                <li><a href="cancel_ticket.html" data-translate="Cancel"><i class="fa-solid fa-xmark"></i> ยกเลิกตั๋วโดยสาร</a></li>
+                <li><a href="order_history.html" data-translate="orderhistory"><i class="fa-solid fa-table"></i> ประวัติการสั่งซื้อ</a></li>
+            </ul>
+        </nav>
+        
+
+        <div class="user-actions">
+            <a href="register.html" class="signup-btn" data-translate="signup"><i class="fa-solid fa-user-plus"></i> สมัครสมาชิก</a>
+            <a href="login.html" class="login-btn" data-translate="login"><i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ</a>
+        </div>
+        <div class="language-switch">
+            <i class="fa-solid fa-earth-americas"></i>
+            <select id="language">
+                <option value="th">TH</option>
+                <option value="en">Eng</option>
+            </select>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <img src="logo2.png" alt="State Railway of Thailand" width="400px" class="hero-logo">
+    </section>
+    
+
+    <section class="booking-section">
+        <div class="tab-group">
+            <button class="tab" onclick="filterRoute('ทั้งหมด')" data-translate="all_routes">ทั้งหมด</button>
+            <button class="tab" onclick="filterRoute('สายเหนือ')" data-translate="north_route">สายเหนือ</button>
+            <button class="tab" onclick="filterRoute('สายตะวันออกเฉียงเหนือ')" data-translate="northeast_route">สายตะวันออกเฉียงเหนือ</button>
+            <button class="tab" onclick="filterRoute('สายตะวันออก')" data-translate="east_route">สายตะวันออก</button>
+            <button class="tab" onclick="filterRoute('สายใต้')" data-translate="south_route">สายใต้</button>
+        </div>
+    
+        <form>
+            <div class="form-group">
+                <label for="origin" data-translate="origin">ต้นทาง:</label>
+                <select id="origin">
+                  
+                </select>
+    
+                <label for="destination" data-translate="destination">ปลายทาง:</label>
+                <select id="destination">   
+                
+                </select>
+    
+                <label for="departure-date" data-translate="departure_date">วันเดินทาง:</label>
+                <input type="date" id="departure-date">
+    
+                <label for="departure-time" data-translate="departure_time">เวลาขึ้น:</label>
+                <select id="departure-time">
+                    <option value="selecttime" data-translate="select_time">เลือกเวลา</option>
+                    <option value="05:00">05:00 น</option>
+                    <option value="05:30">05:30 น</option>
+                    <option value="06:00">06:00 น</option>
+                    <option value="06:30">06:30 น</option>
+                    <option value="07:00">07:00 น</option>
+                    <option value="07:30">07:30 น</option>
+                    <option value="08:00">08:00 น</option>
+                    <option value="08:30">08:30 น</option>
+                    <option value="09:00">09:00 น</option>
+                    <option value="09:30">09:30 น</option>
+                    <option value="10:00">10:00 น</option>
+                    <option value="10:30">10:30 น</option>
+                    <option value="11:00">11:00 น</option>
+                    <option value="11:30">11:30 น</option>
+                    <option value="12:00">12:00 น</option>
+                    <option value="12:30">12:30 น</option>
+                    <option value="13:00">13:00 น</option>
+                    <option value="13:30">13:30 น</option>
+                    <option value="14:00">14:00 น</option>
+                    <option value="14:30">14:30 น</option>
+                    <option value="15:00">15:00 น</option>
+                    <option value="15:30">15:30 น</option>
+                    <option value="16:00">16:00 น</option>
+                    <option value="16:30">16:30 น</option>
+                    <option value="17:00">17:00 น</option>
+                </select>
+    
+                <label for="selectclass" data-translate="class">คลาส:</label>
+                <select id="selectclass">
+                    <option value="selectclass" data-translate="select_class">เลือกคลาส</option>
+                    <option value="Economy Class" data-translate="economy_class">Economy Class</option>
+                    <option value="First Class" data-translate="first_class">First Class</option>
+                </select>
+                <label for="num-passengers" data-translate="num_passengers">จำนวนผู้โดยสาร:</label>
+                <input type="number" id="num-passengers" name="passengers" min="1">
+    
+                <label for="price" data-translate="price">ราคา:</label>
+                <input type="text" id="price" name="price" readonly data-translate="price">
+            </div>
+                <!-- ปุ่มยืนยัน -->
+                <button type="button" class="search-btn" onclick="showPopup()" data-translate="confirm">ยืนยัน</button>
+
+                </form>
+                </section>
+
+                <!-- Overlay สำหรับรายละเอียดการจอง -->
+                <div class="popup-overlay" id="popup-overlay" onclick="closePopup()"></div>
+
+                <!-- Popup แสดงรายละเอียดการจอง -->
+                <div class="popup" id="popup" style="display: none;">
+                    <span class="close-icon" onclick="closePopup()">❌</span>
+                    <h2 style="border-bottom:3px solid;"><center data-translate="booking_details">รายละเอียดการจอง</center></h2>
+                    <p id="popup-content"></p>
+                    <!-- แก้ตรงนี้ให้เรียก QR popup แทน -->
+                    <button class="close-btn" onclick="payNow()" data-translate="payment">ชำระเงิน</button>
+
+                </div>
+
+                <!-- Popup แจ้งเตือนกรอกข้อมูลไม่ครบ -->
+                <div id="error-popup" class="popup" style="display: none;">
+                    <div class="popup-content"> 
+                        <h2 data-translate="Please_complete_all_required_fields">กรุณากรอกข้อมูลให้ครบถ้วน</h2>
+                        <button class="cancle-btn" onclick="closePopup()"><center>ปิด</center></button>
+                    </div>
+                </div>
+
+<!-- ✅ เพิ่ม popup แสดง QR Code ด้านล่าง -->
+            <div id="qr-popup" class="popup" style="display: none;">
+                <span class="close-icon" onclick="closeQRPopup()">❌</span>
+                <h2><center data-translate="pay_with_qr">📲 ชำระเงินผ่านคิวอาร์โค้ด</center></h2>
+                <p><center data-translate="scan_qr_prompt">โปรดสแกน QR Code ด้านล่างเพื่อชำระเงิน</center></p>
+                <div style="text-align: center;">
+                    <img id="qr-image" src="" alt="QR Code" style="width: 250px; margin: 10px auto;">
+                </div>
+                <button class="close-btn" onclick="closeQRPopup()" data-translate="done">เสร็จสิ้น</button>
+            </div>
+
+
+                <!-- ✅ Overlay สำหรับ QR popup -->
+                <div id="qr-popup-overlay" class="popup-overlay" style="display: none;" onclick="closeQRPopup()"></div>
+
+                
+                <!-- Overlay -->
+                <div id="popup-overlay" class="popup-overlay" style="display: none;" onclick="closePopup()"></div>
+
+                <section class="steps-wrapper">
+                    <h2 class="steps-title" data-translate="stepsTitle">🧾 วิธีจองตั๋ว</h2>
+                
+                    <div class="steps-container">
+                        <div class="step">
+                            <i class="fas fa-search"></i>
+                            <p data-translate="step1">ค้นหาเส้นทาง</p>
+                        </div>
+                        <div class="step">
+                            <i class="fas fa-train-subway"></i>
+                            <p data-translate="step2">เลือกขบวนรถไฟ</p>
+                        </div>
+                        <div class="step">
+                            <i class="fas fa-pen-to-square"></i>
+                            <p data-translate="step3">กรอกข้อมูล</p>
+                        </div>
+                        <div class="step">
+                            <i class="fas fa-hand-holding-dollar"></i>
+                            <p data-translate="step4">ชำระเงิน</p>
+                        </div>
+                        <div class="step">
+                            <i class="fas fa-ticket"></i>
+                            <p data-translate="step5">รับตั๋วโดยสาร</p>
+                        </div>
+                    </div>
+                </section>
+                
+                
+                
+    
+    <div class="below">
+        <table>
+            
+            <tr>
+                <td colspan="6"><h2>การรถไฟแห่งประเทศไทย</h2></td>
+                <td colspan="4"><h2><i class="fa-solid fa-train-subway"></i><b> RAILWAY TRANSPORTATION</b></h2></td>
+                <td colspan="10"><h1><i class="fa-solid fa-phone"></i> สายด่วน</h1></td>
+            
+            </tr>
+            <tr>
+                <td colspan="3"><h3><b>CONTACT</b></h3></td>
+                <td colspan="3"><p><i class="fa-brands fa-facebook "></i><i class="fa-brands fa-line"></i><i class="fa-brands fa-instagram"></i></p></td>
+                <td colspan="5"><img src="googleplay_and_appstore-removebg-preview.png" alt="State Railway of Thailand" width="250px"></b></td>
+                <td colspan="2"><h1>1690</h1></td>
+            </tr>
+            <tr>
+                <td colspan="3"><h3>Silpakorn University</h3></td>
+                <td colspan="7"></td>
+                <td colspan="6"><h3>SRT Hotline: 1690</h3></td>
+            </tr>
+        </table>
+    </div>
+
+
+    <footer class="footer">
+        <h4>© 2025 การรถไฟแห่งประเทศไทย. สงวนลิขสิทธิ์.</h4>
+    </footer>
+    <script src="script.js" defer></script>
+    <script src="login.js" defer></script>
+    
+</body>
+</html>

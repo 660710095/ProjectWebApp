@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ประวัติการสั่งซื้อ</title>
+  <link rel="stylesheet" href="styles1.css" />
+  <link rel="stylesheet" href="order_history.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+  <header class="header">
+    <img src="logo1.png" alt="State Railway of Thailand" class="logo">
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="index1.html"><i class="fa-solid fa-house"></i> <span data-translate="home">หน้าหลัก</span></a></li>
+        <li><a href="cancel_ticket.html"><i class="fa-solid fa-xmark"></i> <span data-translate="cancel">ยกเลิกตั๋วโดยสาร</span></a></li>
+        <li><a href="order_history.html"><i class="fa-solid fa-table"></i> <span data-translate="orderhistory">ประวัติการสั่งซื้อ</span></a></li>
+      </ul>
+    </nav>
+    
+    
+    <div class="language-switch">
+        <i class="fa-solid fa-earth-americas"></i>
+        <select id="language">
+            <option value="th">TH</option>
+            <option value="en">Eng</option>
+        </select>
+    </div>
+</header>
+<div class="topic">
+  <h1 style="color:#000000;" data-translate="historyTitle">📜 ประวัติการสั่งซื้อตั๋วโดยสาร</h1>
+</div>
+
+
+  <section class="booking-history">
+    <table id="history-table">
+      <thead>
+        <tr>
+          <th data-translate="code">รหัสจอง</th>
+          <th data-translate="origin">ต้นทาง</th>
+          <th data-translate="destination">ปลายทาง</th>
+          <th data-translate="date">วันเดินทาง</th>
+          <th data-translate="time">เวลา</th>
+          <th data-translate="class">คลาส</th>
+          <th data-translate="passengers">จำนวน</th>
+          <th data-translate="price">ราคา</th>
+        </tr>
+      </thead>
+      
+      <tbody id="history-body">
+        <!-- ประวัติการจองจะแสดงที่นี่ -->
+      </tbody>
+    </table>
+    <br/>
+    
+  </section>
+ 
+  <script src="history_order.js" defer></script>
+</body>
+</html>

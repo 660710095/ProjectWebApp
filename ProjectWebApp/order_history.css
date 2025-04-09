@@ -1,0 +1,99 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* ความสูงเต็มหน้าจอ */
+    background-color: #f4f4f4; /* สีพื้นหลัง */
+    display: block;
+}
+
+
+  
+  /* หัวข้อหลัก */
+  .topic {
+    background:white;
+    max-width: 700px;
+    margin: 20px auto 0;
+    padding: 16px 24px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* ส่วนเนื้อหา */
+  .booking-history {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 24px;
+    background: white;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+  }
+  
+  .table-wrapper {
+    overflow-x: auto;
+  }
+  
+  #history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  #history-table th,
+  #history-table td {
+    padding: 12px 16px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+  }
+  
+  #history-table th {
+    background-color: #ffe5d1;
+    color: #333;
+  }
+  
+  #history-table tr:hover {
+    background-color: #fff1e6;
+  }
+  
+  /* ปุ่มล้างประวัติ */
+  .clear-button {
+    background: linear-gradient(90deg, #ff6600, #ff5900);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .clear-button:hover {
+    background: linear-gradient(90deg, #ff5900, #ff4400);
+  }
+  .button-wrapper {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .clear-history-btn {
+    background: linear-gradient(90deg, #ff6600, #ff5900);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .clear-history-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(255, 89, 0, 0.4);
+  }
+  
+  

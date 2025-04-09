@@ -1,0 +1,780 @@
+body {
+    margin: 10;
+    font-family: 'Arial', sans-serif;
+    background: url('1672372979_97353_noppadon-manadee-RYn_wZ2H3kI-unsplash.jpg') 
+    no-repeat center 
+    center/cover;
+}
+/* header*/
+/* ส่วนหัวของเว็บ */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 170px;
+    padding: 0 40px;
+    background: linear-gradient(90deg, #ff6600, #ff5900); /* ไล่สีจากส้มไปแดง */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* เพิ่มเงา */
+    border-bottom: 4px solid #ffffff; /* ขอบด้านล่าง */
+    position: relative;
+    overflow: hidden;
+}
+
+/* เพิ่มแสงระยิบระยับ */
+.header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skewX(-30deg);
+    transition: all 0.5s ease-in-out;
+}
+
+/* เอฟเฟคแสงไหลผ่าน */
+.header:hover::before {
+    left: 100%;
+}
+
+/* โลโก้ */
+.header .logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.6);
+    transition: all 0.3s ease-in-out;
+}
+
+/* เอฟเฟคเมื่อโฮเวอร์โลโก้ */
+.header .logo:hover {
+    transform: scale(1.1);
+    text-shadow: 3px 3px 12px rgba(255, 255, 255, 0.9);
+}
+
+
+/*------------------------ Logo ----------------------------------------*/
+.logo {
+    margin-left: 100px;
+    height: 250px;
+    width: 250px;
+}
+
+/* -----------------------------bar switch_Language_button--------------------------- */
+/* ส่วนของการเปลี่ยนภาษา */
+.language-switch {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* ระยะห่างระหว่างไอคอนกับ dropdown */
+    background: linear-gradient(90deg, #ff6600, #ff3300); /* ไล่สีพื้นหลัง */
+    opacity: 0.9;
+    padding: 10px 20px;
+    border-radius: 12px; /* ขอบมน */
+    width: fit-content;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* เพิ่มเงา */
+    transition: all 0.3s ease-in-out;
+}
+
+/* เอฟเฟค Hover */
+.language-switch:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* ไอคอนธงหรือโลโก้ */
+.language-switch i {
+    font-size: 26px;
+    color: #fff;
+    text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.5);
+}
+
+/* เลือกภาษา */
+.language-switch select {
+    font-size: 18px;
+    padding: 6px 12px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: rgb(0, 0, 0);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* เอฟเฟคเมื่อโฮเวอร์ Dropdown */
+.language-switch select:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* เอฟเฟคเมื่อเลือก Dropdown */
+.language-switch select:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.5);
+}
+/*--------------sign-in Button---------------------*/
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* สไตล์ของลิงก์ */
+.user-actions a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+/* เอฟเฟค Hover */
+.user-actions a:hover {
+    text-decoration: underline;
+    color: #ffffff;
+}
+
+/* ปุ่มสมัครสมาชิก */
+.signup-btn {
+    background: linear-gradient(45deg, #ffcc00, #ff9900);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(255, 165, 0, 0.4);
+    border: none;
+}
+
+/* เอฟเฟค Hover ปุ่มสมัครสมาชิก */
+.signup-btn:hover {
+    transform: scale(1.1);
+    background: linear-gradient(45deg, #ffdd44, #ff8800);
+    box-shadow: 0px 6px 12px rgba(255, 165, 0, 0.6);
+}
+
+/* ปุ่มเข้าสู่ระบบ */
+.login-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+}
+
+/* เอฟเฟค Hover ปุ่มเข้าสู่ระบบ */
+.login-btn:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.4);
+    color: #222;
+    box-shadow: 0px 6px 12px rgba(255, 255, 255, 0.4);
+}
+
+/* เอฟเฟคเมื่อคลิก */
+.signup-btn:active, .login-btn:active {
+    transform: scale(0.95);
+}
+
+
+/* -----------------------------bar Menubutton--------------------------- */
+
+.nav-menu {
+    background: linear-gradient(90deg, #ff562c, #fdab6c); /* ไล่สีพื้นหลัง */
+    padding: 15px 30px; /* ระยะห่างภายใน */
+    text-align: center; /* จัดให้เนื้อหาตรงกลาง */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* เงาด้านล่าง */
+    border-radius: 10px; /* มุมโค้งมน */
+}
+
+/* สไตล์ของรายการเมนู */
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+/* สไตล์ของลิงก์ */
+.nav-menu ul li a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 3px solid transparent;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 12px 20px;
+    transition: all 0.4s ease-in-out;
+    border-radius: 6px;
+    position: relative;
+}
+
+/* เอฟเฟคเงา */
+.nav-menu ul li a::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: white;
+    transition: all 0.4s ease-in-out;
+    transform: translateX(-50%);
+}
+
+/* เอฟเฟค Hover */
+.nav-menu ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    transform: scale(1.1);
+}
+
+/* ขีดเส้นใต้เมื่อโฮเวอร์ */
+.nav-menu ul li a:hover::before {
+    width: 80%;
+}
+
+/* เอฟเฟคตอนกด */
+.nav-menu ul li a:active {
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: scale(0.95);
+}
+
+
+/* -------- ปุ่มเมนูไอคอน -------- */
+.nav-menu ul li a i {
+    font-size: 22px;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* เอฟเฟคเมื่อโฮเวอร์ไอคอน */
+.nav-menu ul li a:hover i {
+    transform: scale(1.2);
+    color: #ffffff;
+}
+
+/* -------- ปุ่มยืนยัน -------- */
+.search-btn {
+    background: linear-gradient(90deg, #28a745, #218838); /* ไล่สีพื้นหลัง */
+    color: white;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+
+/* เอฟเฟคเมื่อโฮเวอร์ปุ่ม */
+.search-btn:hover {
+    background: linear-gradient(90deg, #218838, #1e7e34);
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* เอฟเฟคเมื่อกดปุ่ม */
+.search-btn:active {
+    background: #1e7e34;
+    transform: scale(1);
+}
+/*------------------popup information is not fisnish-----------------------*/
+/* Popup แจ้งเตือนกรอกข้อมูลไม่ครบ */
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    width: 90%; /* ทำให้ popup ขยายเต็มหน้าจอเล็กน้อย */
+    max-width: 500px; /* ขีดจำกัดขนาดของ popup */
+}
+
+/* ปรับขนาดและสีของหัวข้อใน popup */
+.popup-content h2 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    
+}
+
+/* ปรับรูปร่างของ overlay */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+/* ปุ่มปิด (close icon) */
+.popup .close-icon {
+    font-size: 24px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: #333;
+    font-weight: bold;
+}
+/* ปุ่มปิด */
+.cancle-btn {
+    background-color: #FF5733; /* สีพื้นหลังของปุ่ม */
+    color: white; /* สีข้อความ */
+    border: none; /* ไม่มีขอบ */
+    padding: 10px 20px; /* ขนาดของปุ่ม */
+    font-size: 16px; /* ขนาดข้อความ */
+    cursor: pointer; /* เคอร์เซอร์เป็นมือเมื่อ hover */
+    border-radius: 5px; /* ขอบมุมกลม */
+    display: block; /* แสดงปุ่มเป็น block */
+    margin: 20px auto; /* จัดให้ปุ่มอยู่ตรงกลาง */
+    text-align: center; /* จัดข้อความให้ตรงกลาง */
+}
+
+/* เปลี่ยนสีเมื่อ hover */
+.cancle-btn:hover {
+    background-color: #FF3D00; /* สีเมื่อ hover */
+}
+
+/* ปุ่มปิดมีการเน้นให้ดูชัดเจน */
+.cancle-btn:focus {
+    outline: none; /* เอา outline ออก */
+    box-shadow: 0 0 10px rgba(255, 87, 51, 0.8); /* เพิ่มเงาขณะ focus */
+}
+
+/* ปุ่ม "ชำระเงิน" */
+.popup .close-btn {
+    display: block;
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 0; /* เพิ่มความสูงให้ปุ่ม */
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px; /* เพิ่มช่องว่างด้านบน */
+}
+
+.popup .close-btn:hover {
+    background-color: #45a049;
+}
+
+/* ปรับให้ปุ่มตรงกลาง */
+.popup button {
+    margin: 10px auto; /* ปรับตำแหน่งให้ตรงกลาง */
+}
+
+/* -------- ช่องกรอกข้อมูล -------- */
+input, select {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease-in-out;
+}
+
+/* เอฟเฟคเมื่อคลิกเลือกช่อง */
+input:focus, select:focus {
+    border: 2px solid #ff6600;
+    box-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
+    outline: none;
+}
+
+/* ปรับขนาดเฉพาะช่องกรอก */
+#num-passengers { width: 30px; }
+#departure-time { width: 100px; }
+#departure-date { width: 120px; }
+#price { width: 100px; }
+#destination { width: 140px; }
+#origin { width: 130px; }
+#selectclass { width: 150px; }
+
+
+
+/* ------------------------------midle logo page-------------------------------------*/
+.hero {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+
+}
+
+/* -------------------------------movement Logo--------------------------------------------- */
+.hero-logo {
+    max-width: 100%;
+    height: auto;
+    animation: swing 3s ease-in-out infinite; /* โลโก้จะขยับไปมา */
+}
+
+/* การเคลื่อนไหวของโลโก้ (Pendulum Effect) */
+@keyframes swing {
+    0% { transform: rotate(0deg); }
+    10% { transform: rotate(5deg); }
+    25% { transform: rotate(10deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-10deg); }
+    100% { transform: rotate(0deg); }
+}
+/*-----------------------------------seclection - booking  -------------------------------------------------*/
+.booking-section {
+    text-align: center;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 20px auto;
+    width: 95%;
+    height: 50%;
+    border-radius: 10px;
+}
+/*---------------------------- tab Header button and effect-------------------------------------------------------- */
+.tab-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    
+}
+
+.tab {
+    padding: 10px 20px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* เพิ่มการเปลี่ยนแปลงการเปลี่ยนสีและขนาด */
+}
+.tab:hover {
+    background-color: #ddd;
+    transform: scale(1.05); /* ขยายปุ่มเล็กน้อยเมื่อ hover */
+}
+
+.tab.active {
+    background: #ff6600;
+    background-color: #ff6600; /* สีเขียวเมื่อกด */
+    transform: scale(0.95); /* ปุ่มจะหดเล็กน้อย */
+    color: white;
+}
+/* ------------------------------------------------------------------------------------------------ */
+.form-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    font-size:large;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+}
+
+.form-group select, .form-group input {
+    padding: 10px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-btn {
+    padding: 15px 30px;
+    background: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.footer {
+    text-align: center;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.7);
+    color: rgb(255, 255, 255);
+}
+/*--------------------------------POP UP Sumit---------------------*/
+.popup {
+    width: 350px;
+    display: none;
+    position: fixed;
+    top: -130px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgb(255, 255, 255);
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px; /* เพิ่มมุมโค้ง */
+    position: relative; /* กำหนดตำแหน่งสำหรับไอคอน */
+}
+
+.popup-overlay {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+.close-btn {
+    margin-top: 20px;
+    background: rgb(113, 250, 67);
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    border: 1px solid ;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.close-btn:hover{
+    background-color: #00c417;
+    transform: scale(1.05); /* ขยายปุ่มเล็กน้อยเมื่อ hover */
+}
+.close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: red;
+}
+.close-icon:hover{
+    transform: scale(1);
+    cursor: pointer;
+}
+/*--------------------------------Below---------------------*/
+.below {
+    margin: 0 auto;
+    padding: 40px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #ffffff, #f9f9f9);
+    width: 90%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.below:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------------------------------------- การตกแต่งฟุตเตอร์ ---------------------------------------- */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 1em;
+    color: #ffffff;
+    padding: 20px;
+    background: linear-gradient(145deg, #ff6600, rgba(0, 0, 0, 0.7));
+    border-radius: 15px; /* เพิ่มขอบโค้งมน */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease, transform 0.2s ease; /* เพิ่มการเคลื่อนไหว */
+}
+
+/* เอฟเฟกต์เมื่อ hover ฟุตเตอร์ */
+.footer:hover {
+    background: linear-gradient(145deg, #ff5500, rgba(0, 0, 0, 0.7)); /* เปลี่ยนสีพื้นหลัง */
+    transform: scale(1.02); /* ขยายขนาดเล็กน้อย */
+}
+
+/* จัดการข้อความในฟุตเตอร์ */
+.footer h4 {
+    margin: 0;
+    font-size: 18px; /* ขนาดฟอนต์ที่เหมาะสม */
+    letter-spacing: 1px; /* เพิ่มช่องว่างระหว่างตัวอักษร */
+    font-weight: 300; /* ใช้ฟอนต์ที่เบากว่า */
+    text-transform: uppercase; /* ทำให้ข้อความเป็นตัวพิมพ์ใหญ่ */
+}
+
+/* เพิ่มการเคลื่อนไหวให้ข้อความเมื่อโหลด */
+.footer h4 {
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* เอฟเฟกต์การค่อยๆ แสดง (Fade In) */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 1200px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+td, th {
+    padding: 20px;
+    text-align: center;
+    vertical-align: middle;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+    background-color: #ff6600;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+tr:hover {
+    background-color: #f9f9f9;
+}
+
+h1, h2 {
+    color: #ff6600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.fa-brands {
+    font-size: 28px;
+    margin: 0 15px;
+    color: #111111;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.fa-brands:hover {
+    color: #ff6600;
+    transform: scale(1.5);
+}
+
+p {
+    margin: 0;
+    font-size: 16px;
+    color: #000000;
+}
+
+/* เพิ่มเอฟเฟคให้กับปุ่มหรือลิงก์ภายในตาราง */
+table a {
+    color: #ff6600;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+table a:hover {
+    color: #e65c00;
+    text-decoration: underline;
+}
+
+/* ปรับปรุงการแสดงผลสำหรับหน้าจอขนาดเล็ก */
+@media (max-width: 768px) {
+    .below {
+        padding: 20px 10px;
+    }
+
+    table {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    td, th {
+        padding: 15px;
+    }
+
+    h1, h2 {
+        font-size: 24px;
+    }
+    h4{
+        color: #ffffff;
+    }
+
+    .fa-brands {
+        font-size: 24px;
+        margin: 0 10px;
+    }
+}
+
+/* ---------HOW To BUY------------------*/
+.steps-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 100px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border: 2px solid #000000;
+}
+
+.step {
+    text-align: center;
+    flex: 1 1 150px;
+    max-width: 160px;
+    background-color: #fefefe;
+    padding: 20px 10px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+
+.step i {
+    font-size: 64px;
+    color: #ff6600;
+    margin-bottom: 10px;
+}
+
+.step p {
+    font-size: 16px;
+    color: #444;
+    margin: 0;
+}
+
+.steps-title {
+    display: block;
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 20px;
+    padding: 20px 35px; /* ลด padding เพื่อให้ขนาดพื้นหลังเล็กลง */
+    background-color: #ffffff;
+    border-radius: 4px;
+    position: relative;
+    max-width: 80%; /* จำกัดความกว้างของพื้นหลัง */
+    margin-left: auto;
+    margin-right: auto; /* ทำให้พื้นหลังอยู่ตรงกลาง */
+}
+
+.steps-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: #000000;
+    margin: 10px auto 0;
+}
+
+
+

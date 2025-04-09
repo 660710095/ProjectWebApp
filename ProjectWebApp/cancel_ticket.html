@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ยกเลิกตั๋วโดยสาร</title>
+    <link rel="stylesheet" href="styles1.css">
+    <link rel="stylesheet" href="test.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+      <img src="logo1.png" alt="State Railway of Thailand" class="logo">
+      <nav class="nav-menu">
+          <ul>
+            <li><a href="index1.html" data-translate="home"><i class="fa-solid fa-house"></i> <span>หน้าหลัก</span></a></li>
+            <li><a href="cancel_ticket.html" data-translate="cancel"><i class="fa-solid fa-xmark"></i> <span>ยกเลิกตั๋วโดยสาร</span></a></li>
+            <li><a href="order_history.html" data-translate="orderhistory"><i class="fa-solid fa-table"></i> <span>ประวัติการสั่งซื้อ</span></a></li>
+            
+          </ul>
+      </nav>
+      
+
+      
+      <div class="language-switch">
+          <i class="fa-solid fa-earth-americas"></i>
+          <select id="language">
+              <option value="th">TH</option>
+              <option value="en">Eng</option>
+          </select>
+      </div>
+  </header>
+  
+
+    <section class="cancel-section">
+        <div class="cancel-container">
+            <h2><i class="fa-solid fa-xmark"></i> ยกเลิกตั๋วโดยสาร</h2>
+            <p>กรอกรหัสตั๋วที่ต้องการยกเลิก เช่น AbZdV523</p>
+            <input type="text" id="cancel-code" placeholder="กรอกรหัสตั๋ว">
+            <button onclick="cancelTicket()">ยืนยันการยกเลิก</button>
+            <p id="cancel-message"></p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <h4>© 2025 การรถไฟแห่งประเทศไทย. สงวนลิขสิทธิ์.</h4>
+    </footer>
+
+    
+</body>
+<script src="cancel.js" defer></script>
+<script src="script.js" defer></script>
+</html>
