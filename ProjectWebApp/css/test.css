@@ -1,0 +1,75 @@
+/* ทำให้ฟอร์มอยู่ตรงกลางหน้าจอ */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* ความสูงเต็มหน้าจอ */
+    background-color: #f4f4f4; /* สีพื้นหลัง */
+    display: block;
+}
+
+.cancel-section {
+    width: 100%;
+    height: 100%; /* ใช้เต็มความสูง */
+    position: relative;
+}
+
+.cancel-container {
+    position: absolute;
+    top: 50%; /* ขยับจากด้านบน */
+    left: 50%; /* ขยับจากด้านซ้าย */
+    transform: translate(-50%, -50%); /* ทำให้ฟอร์มอยู่ตรงกลาง */
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+    max-width: 600px; /* ขนาดสูงสุดของฟอร์ม */
+}
+
+.cancel-container h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.cancel-container p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.cancel-container input {
+    width: 80%; /* ความกว้างของ input */
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.cancel-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #4CAF50; /* สีปุ่ม */
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cancel-container button:hover {
+    background-color: #45a049; 
+}
+
+#cancel-message {
+    margin-top: 20px;
+    font-size: 16px;
+}
+body {
+    background-image: url('1672372979_97353_noppadon-manadee-RYn_wZ2H3kI-unsplash.jpg');
+    background-repeat: no-repeat; 
+    background-position: center center; 
+    background-size: auto; 
+    height: 100vh;
+    margin: 0;
+}
