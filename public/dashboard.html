@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>แดชบอร์ดสรุปการจองตั๋ว - การรถไฟแห่งประเทศไทย</title>
+  <link rel="stylesheet" href="css/styles1.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <!-- Topbar Navigation -->
+  <header class="header">
+    <a href="index.html">
+      <img src="images/logo1.png" alt="State Railway of Thailand" class="logo">
+    </a>
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> หน้าหลัก</a></li>
+        <li><a href="dashboard.html" style="background: rgba(255,255,255,0.18); border-bottom: 2px solid var(--gold);"><i class="fa-solid fa-chart-line"></i> แดชบอร์ดสรุป</a></li>
+        <li><a href="order_history.html"><i class="fa-solid fa-table"></i> ประวัติการสั่งซื้อ</a></li>
+        <li><a href="cancel_ticket.html"><i class="fa-solid fa-xmark"></i> ยกเลิกตั๋วโดยสาร</a></li>
+      </ul>
+    </nav>
+
+    <div class="user-actions">
+      <a href="register.html" class="signup-btn"><i class="fa-solid fa-user-plus"></i> สมัครสมาชิก</a>
+      <a href="login.html" class="login-btn"><i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ</a>
+    </div>
+
+    <div class="language-switch">
+      <i class="fa-solid fa-earth-americas"></i>
+      <select id="language">
+        <option value="th">TH</option>
+        <option value="en">EN</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- Main Dashboard Content -->
+  <main class="dashboard-container">
+    <!-- Header Banner -->
+    <div class="dash-header">
+      <div class="dash-title-group">
+        <h1>
+          <i class="fa-solid fa-chart-pie" style="color: var(--dash-crimson);"></i>
+          แดชบอร์ดสรุปภาพรวมการจองตั๋ว
+          <span class="badge">Real-time API</span>
+        </h1>
+        <p>ยินดีต้อนรับคุณ <strong id="user-greeting-name">Manorin</strong> • รายงานข้อมูลการเดินทางและสถานะตั๋วโดยสารแบบครบวงจร</p>
+      </div>
+      <div class="dash-actions">
+        <button id="btn-refresh-data" class="btn-refresh">
+          <i class="fa-solid fa-rotate-right"></i> อัปเดตข้อมูล
+        </button>
+        <a href="index.html" class="btn-book-new">
+          <i class="fa-solid fa-plus"></i> จองตั๋วขบวนใหม่
+        </a>
+      </div>
+    </div>
+
+    <!-- 4 KPI Summary Cards -->
+    <section class="kpi-grid">
+      <!-- Card 1 -->
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">ยอดการจองทั้งหมด</span>
+          <div class="kpi-icon crimson">
+            <i class="fa-solid fa-ticket"></i>
+          </div>
+        </div>
+        <div class="kpi-value" id="kpi-total-bookings">0</div>
+        <div class="kpi-subtext">รายการที่บันทึกในระบบ</div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">ตั๋วพร้อมเดินทาง</span>
+          <div class="kpi-icon emerald">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+        </div>
+        <div class="kpi-value" id="kpi-active-tickets">0</div>
+        <div class="kpi-subtext">สถานะยืนยันแล้ว (Confirmed)</div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">จำนวนผู้โดยสารรวม</span>
+          <div class="kpi-icon navy">
+            <i class="fa-solid fa-users"></i>
+          </div>
+        </div>
+        <div class="kpi-value" id="kpi-total-passengers">0 ท่าน</div>
+        <div class="kpi-subtext">ผู้โดยสารทุกขบวนเดินทาง</div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-label">มูลค่าการจองรวม</span>
+          <div class="kpi-icon gold">
+            <i class="fa-solid fa-baht-sign"></i>
+          </div>
+        </div>
+        <div class="kpi-value" id="kpi-total-revenue">฿0</div>
+        <div class="kpi-subtext">ประมาณการรายได้จากการจอง</div>
+      </div>
+    </section>
+
+    <!-- Asymmetric 2-Column Section -->
+    <div class="dash-content-grid">
+      <!-- Left Column (2/3): Live Ticket Ledger -->
+      <section class="panel">
+        <div class="panel-header">
+          <h2>
+            <i class="fa-solid fa-list-check" style="color: var(--dash-crimson);"></i>
+            รายการตั๋วโดยสารล่าสุด
+          </h2>
+          <span style="font-size: 13px; color: var(--dash-text-muted);">เชื่อมต่อฐานข้อมูล SRT Data Core</span>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="ledger-controls">
+          <div class="search-input-wrapper">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="ledger-search" placeholder="ค้นหาด้วยรหัสตั๋ว, ปลายทาง หรือชื่อผู้โดยสาร...">
+          </div>
+          <select id="ledger-filter" class="filter-select">
+            <option value="all">ตัวกรอง: ทั้งหมด</option>
+            <option value="confirmed">เฉพาะตั๋วพร้อมเดินทาง</option>
+            <option value="first">เฉพาะ First Class</option>
+            <option value="economy">เฉพาะ Economy Class</option>
+          </select>
+        </div>
+
+        <!-- Table -->
+        <div class="ledger-table-wrapper">
+          <table class="ledger-table">
+            <thead>
+              <tr>
+                <th>รหัสตั๋ว</th>
+                <th>เส้นทางเดินทาง</th>
+                <th>วัน - เวลา</th>
+                <th>ชั้นโดยสาร</th>
+                <th>จำนวน</th>
+                <th>ยอดเงิน</th>
+                <th>ดำเนินการ</th>
+              </tr>
+            </thead>
+            <tbody id="ledger-table-body">
+              <tr>
+                <td colspan="7" id="table-loading" style="text-align: center; padding: 24px; color: var(--dash-text-muted);">
+                  <i class="fa-solid fa-spinner fa-spin"></i> กำลังโหลดข้อมูล...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Right Column (1/3): Visual Analytics & Quick Actions -->
+      <div class="analytics-section">
+        <!-- Next Departure -->
+        <div class="next-departure-card" id="next-departure-info">
+          <div class="next-dep-tag">ขบวนถัดไป • Next Departure</div>
+          <div class="next-dep-route">กรุงเทพ <i class="fa-solid fa-arrow-right-long" style="color: var(--dash-gold);"></i> เชียงใหม่</div>
+          <div class="next-dep-meta">
+            <span><i class="fa-regular fa-calendar"></i> กำลังประมวลผล...</span>
+          </div>
+        </div>
+
+        <!-- Route Breakdown -->
+        <div class="panel">
+          <div class="panel-header">
+            <h2><i class="fa-solid fa-map-location-dot" style="color: var(--dash-navy);"></i> ความนิยมเส้นทาง</h2>
+          </div>
+          <div id="route-analytics-bars">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- Class Breakdown -->
+        <div class="panel">
+          <div class="panel-header">
+            <h2><i class="fa-solid fa-couch" style="color: var(--dash-gold);"></i> สัดส่วนชั้นโดยสาร</h2>
+          </div>
+          <div id="class-analytics-bars">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Ticket Inspection Modal -->
+  <div id="ticket-modal" class="ticket-modal">
+    <div class="ticket-card-dialog">
+      <div class="ticket-card-header">
+        <h3><i class="fa-solid fa-train"></i> บัตรโดยสารรถไฟอิเล็กทรอนิกส์</h3>
+        <span onclick="closeTicketModal()" style="cursor: pointer; font-size: 18px;"><i class="fa-solid fa-xmark"></i></span>
+      </div>
+      <div class="ticket-card-body">
+        <div class="ticket-qr-container">
+          <img id="ticket-modal-qr" src="" alt="Ticket QR">
+        </div>
+        <div class="ticket-spec-grid">
+          <div class="ticket-spec-item">
+            <strong>รหัสตั๋ว (Ticket Code)</strong>
+            <span id="modal-ticket-code" style="font-family: monospace; font-weight: 700; color: var(--dash-crimson); font-size: 15px;">-</span>
+          </div>
+          <div class="ticket-spec-item">
+            <strong>ผู้โดยสาร (Passenger)</strong>
+            <span id="modal-passenger-name">-</span>
+          </div>
+          <div class="ticket-spec-item">
+            <strong>เส้นทาง (Route)</strong>
+            <span id="modal-route">-</span>
+          </div>
+          <div class="ticket-spec-item">
+            <strong>วันเวลาออก (Departure)</strong>
+            <span id="modal-datetime">-</span>
+          </div>
+          <div class="ticket-spec-item">
+            <strong>ชั้นโดยสาร (Class)</strong>
+            <span id="modal-class">-</span>
+          </div>
+          <div class="ticket-spec-item">
+            <strong>ราคา (Total Fare)</strong>
+            <span id="modal-price" style="font-weight: 700; color: var(--dash-crimson);">-</span>
+          </div>
+        </div>
+        <div class="ticket-modal-actions">
+          <button class="btn-print" onclick="printTicket()"><i class="fa-solid fa-print"></i> พิมพ์ตั๋ว</button>
+          <button class="btn-close-modal" onclick="closeTicketModal()">ปิดหน้าต่าง</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Official Footer -->
+  <div class="below">
+    <div class="below-container">
+      <div class="below-col">
+        <h3><i class="fa-solid fa-train-subway"></i> การรถไฟแห่งประเทศไทย</h3>
+        <p>State Railway of Thailand</p>
+        <p>Silpakorn University Academic Project</p>
+        <div class="social-icons">
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-line"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="below-col">
+        <h3><i class="fa-solid fa-mobile-screen"></i> SRT Mobile Application</h3>
+        <p>ดาวน์โหลดแอปพลิเคชันเพื่อความสะดวกยิ่งขึ้น</p>
+        <img src="images/app-store-badges.png" alt="State Railway of Thailand" style="max-width: 220px; margin-top: 10px;">
+      </div>
+      <div class="below-col">
+        <h3><i class="fa-solid fa-phone-volume"></i> สายด่วนลูกค้าสัมพันธ์</h3>
+        <p>สอบถามข้อมูลตารางเวลาและการเดินทาง 24 ชั่วโมง</p>
+        <div class="hotline">1690</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <h4>© 2026 การรถไฟแห่งประเทศไทย. สงวนลิขสิทธิ์.</h4>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

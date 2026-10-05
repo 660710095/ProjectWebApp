@@ -10,19 +10,60 @@
   ],
   "bookings": [
     {
-      "id": "b-001",
-      "code": "SRT88921",
-      "userId": "u-001",
+      "id": "b-101",
+      "code": "SRT98214",
       "userName": "Manorin",
-      "origin": "กรุงเทพ (สถานีกลางกรุงเทพอภิวัฒน์)",
+      "origin": "กรุงเทพ",
       "destination": "เชียงใหม่",
-      "date": "2026-10-15",
+      "date": "2026-10-12",
       "time": "08:30",
       "class": "First Class",
       "passengers": 2,
-      "price": 1400,
+      "price": "1,400 บาท",
       "status": "confirmed",
-      "createdAt": "2026-10-01T10:30:00.000Z"
+      "createdAt": "2026-10-04T09:20:00.000Z"
+    },
+    {
+      "id": "b-102",
+      "code": "SRT54312",
+      "userName": "สมชาย ใจดี",
+      "origin": "กรุงเทพ",
+      "destination": "หัวหิน",
+      "date": "2026-10-15",
+      "time": "09:30",
+      "class": "Economy Class",
+      "passengers": 4,
+      "price": "800 บาท",
+      "status": "confirmed",
+      "createdAt": "2026-10-05T03:15:00.000Z"
+    },
+    {
+      "id": "b-103",
+      "code": "SRT77120",
+      "userName": "อรัญญา สุขสวัสดิ์",
+      "origin": "กรุงเทพ",
+      "destination": "ขอนแก่น",
+      "date": "2026-10-18",
+      "time": "07:00",
+      "class": "First Class",
+      "passengers": 1,
+      "price": "950 บาท",
+      "status": "confirmed",
+      "createdAt": "2026-10-05T07:45:00.000Z"
+    },
+    {
+      "id": "b-104",
+      "code": "SRT32098",
+      "userName": "ธีรภัทร วงศ์ษา",
+      "origin": "กรุงเทพ",
+      "destination": "สุราษฎร์ธานี",
+      "date": "2026-10-22",
+      "time": "14:00",
+      "class": "Economy Class",
+      "passengers": 2,
+      "price": "1,100 บาท",
+      "status": "confirmed",
+      "createdAt": "2026-10-05T11:10:00.000Z"
     }
   ]
 }
