@@ -9,19 +9,33 @@ function generateRandomCode(length) {
 
 
 
-function cancelTicket() {
+async function cancelTicket() {
     const code = document.getElementById('cancel-code').value.trim();
     const result = document.getElementById('cancel-message');
+    if (!code) {
+        result.textContent = currentLang === 'en' ? 'Please enter a ticket code.' : 'กรุณากรอกรหัสตั๋ว';
+        result.className = "mt-4 font-medium text-red-600";
+        return;
+    }
+
+    if (typeof SRT_API !== 'undefined') {
+        const res = await SRT_API.cancelBooking(code);
+        if (res.success) {
+            result.textContent = translations[currentLang].cancelSuccess.replace('{code}', code);
+            result.className = "mt-4 font-medium text-green-600";
+        } else {
+            result.textContent = translations[currentLang].cancelError.replace('{code}', code);
+            result.className = "mt-4 font-medium text-red-600";
+        }
+        return;
+    }
 
     let bookingHistory = JSON.parse(localStorage.getItem("bookingHistory")) || [];
-
-    // หาตั๋วที่มีรหัสตรงกัน
-    const index = bookingHistory.findIndex(booking => booking.code === code);
+    const index = bookingHistory.findIndex(booking => booking.code.toLowerCase() === code.toLowerCase());
 
     if (index !== -1) {
-        bookingHistory.splice(index, 1); // ลบออกจาก array
-        localStorage.setItem("bookingHistory", JSON.stringify(bookingHistory)); // บันทึกใหม่
-
+        bookingHistory.splice(index, 1);
+        localStorage.setItem("bookingHistory", JSON.stringify(bookingHistory));
         result.textContent = translations[currentLang].cancelSuccess.replace('{code}', code);
         result.className = "mt-4 font-medium text-green-600";
     } else {

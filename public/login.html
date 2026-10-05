@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เข้าสู่ระบบ - การรถไฟแห่งประเทศไทย</title>
+  <link rel="stylesheet" href="css/styles1.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, rgba(15, 41, 66, 0.85), rgba(139, 29, 36, 0.9)), url('images/hero-bg.jpg') center/cover fixed;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .auth-card {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(255, 255, 255, 0.98);
+      padding: 36px 32px;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    .auth-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .auth-header img {
+      max-width: 140px;
+      height: auto;
+      margin-bottom: 12px;
+    }
+    .auth-header h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .auth-header p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 15px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: #f8fafc;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .form-group input:focus {
+      border-color: var(--primary);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(139, 29, 36, 0.12);
+    }
+    .auth-btn {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      margin-top: 8px;
+      box-shadow: 0 4px 12px rgba(139, 29, 36, 0.3);
+      transition: all 0.2s;
+    }
+    .auth-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+    .auth-footer {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .auth-footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .auth-footer a:hover {
+      text-decoration: underline;
+    }
+    .back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .back-home:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div style="width: 100%; max-width: 420px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+    <a href="index.html" class="back-home"><i class="fa-solid fa-arrow-left"></i> กลับหน้าหลัก</a>
+    <div class="language-switch">
+      <i class="fa-solid fa-earth-americas"></i>
+      <select id="language">
+        <option value="th">TH</option>
+        <option value="en">EN</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="auth-card">
+    <div class="auth-header">
+      <img src="images/logo1.png" alt="State Railway of Thailand">
+      <h2 data-translate="loginTitle">เข้าสู่ระบบ</h2>
+      <p data-translate="loginSubtitle">ระบบจองตั๋วออนไลน์ การรถไฟแห่งประเทศไทย</p>
+    </div>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email" data-translate="emailLabel">อีเมล</label>
+        <input type="email" id="email" placeholder="example@email.com" required data-translate-placeholder="emailPlaceholder">
+      </div>
+      <div class="form-group">
+        <label for="password" data-translate="passwordLabel">รหัสผ่าน</label>
+        <input type="password" id="password" placeholder="••••••••" required data-translate-placeholder="passwordPlaceholder">
+      </div>
+      <button type="submit" class="auth-btn" data-translate="loginButton">เข้าสู่ระบบ</button>
+    </form>
+
+    <div class="auth-footer">
+      <span data-translate="noAccount">ยังไม่มีบัญชีผู้ใช้?</span>
+      <a href="register.html" data-translate="signUpLink">สมัครสมาชิกที่นี่</a>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script>
+    const translations = {
+      en: {
+        loginTitle: "Login",
+        loginSubtitle: "State Railway of Thailand Online Booking",
+        emailLabel: "Email",
+        passwordLabel: "Password",
+        emailPlaceholder: "example@email.com",
+        passwordPlaceholder: "••••••••",
+        loginButton: "Sign In",
+        noAccount: "Don't have an account?",
+        signUpLink: "Register here",
+        loginSuccess: "Login successful!",
+        loginFail: "Incorrect email or password."
+      },
+      th: {
+        loginTitle: "เข้าสู่ระบบ",
+        loginSubtitle: "ระบบจองตั๋วออนไลน์ การรถไฟแห่งประเทศไทย",
+        emailLabel: "อีเมล",
+        passwordLabel: "รหัสผ่าน",
+        emailPlaceholder: "example@email.com",
+        passwordPlaceholder: "••••••••",
+        loginButton: "เข้าสู่ระบบ",
+        noAccount: "ยังไม่มีบัญชีผู้ใช้?",
+        signUpLink: "สมัครสมาชิกที่นี่",
+        loginSuccess: "เข้าสู่ระบบสำเร็จ!",
+        loginFail: "อีเมลหรือรหัสผ่านไม่ถูกต้อง"
+      }
+    };
+
+    let currentLang = 'th';
+
+    function translatePage() {
+      document.querySelectorAll("[data-translate]").forEach(el => {
+        const key = el.getAttribute("data-translate");
+        if (translations[currentLang][key]) {
+          el.textContent = translations[currentLang][key];
+        }
+      });
+      document.querySelectorAll("[data-translate-placeholder]").forEach(el => {
+        const key = el.getAttribute("data-translate-placeholder");
+        if (translations[currentLang][key]) {
+          el.placeholder = translations[currentLang][key];
+        }
+      });
+    }
+
+    document.getElementById("language").addEventListener("change", function () {
+      currentLang = this.value;
+      translatePage();
+    });
+
+    document.getElementById("loginForm").addEventListener("submit", async function(event) {
+      event.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const res = await SRT_API.login(email, password);
+      if (res.success) {
+        alert(translations[currentLang].loginSuccess);
+        window.location.href = "index.html";
+      } else {
+        alert(res.error || translations[currentLang].loginFail);
+      }
+    });
+
+    window.addEventListener("DOMContentLoaded", translatePage);
+  </script>
+</body>
+</html>

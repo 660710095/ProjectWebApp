@@ -41,9 +41,11 @@ document.addEventListener("DOMContentLoaded", () => {
   translatePage();
 });
 
-function renderHistory() {
+async function renderHistory() {
   const historyBody = document.getElementById("history-body");
-  const history = JSON.parse(localStorage.getItem("bookingHistory")) || [];
+  const history = typeof SRT_API !== 'undefined'
+    ? await SRT_API.getBookings()
+    : JSON.parse(localStorage.getItem("bookingHistory")) || [];
 
   historyBody.innerHTML = "";
 

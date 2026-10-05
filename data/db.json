@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": "u-001",
+      "name": "Manorin",
+      "email": "demo@srt.co.th",
+      "password": "password123",
+      "createdAt": "2026-01-01T08:00:00.000Z"
+    }
+  ],
+  "bookings": [
+    {
+      "id": "b-001",
+      "code": "SRT88921",
+      "userId": "u-001",
+      "userName": "Manorin",
+      "origin": "กรุงเทพ (สถานีกลางกรุงเทพอภิวัฒน์)",
+      "destination": "เชียงใหม่",
+      "date": "2026-10-15",
+      "time": "08:30",
+      "class": "First Class",
+      "passengers": 2,
+      "price": 1400,
+      "status": "confirmed",
+      "createdAt": "2026-10-01T10:30:00.000Z"
+    }
+  ]
+}

@@ -635,10 +635,14 @@ function displayBookingDetails() {
     price
   };
 
-  // บันทึกลง localStorage
-  const history = JSON.parse(localStorage.getItem("bookingHistory")) || [];
-  history.push(bookingData);
-  localStorage.setItem("bookingHistory", JSON.stringify(history));
+  // บันทึกผ่าน SRT_API (Backend API + localStorage fallback)
+  if (typeof SRT_API !== 'undefined') {
+    SRT_API.createBooking(bookingData);
+  } else {
+    const history = JSON.parse(localStorage.getItem("bookingHistory")) || [];
+    history.push(bookingData);
+    localStorage.setItem("bookingHistory", JSON.stringify(history));
+  }
 
   // แสดงข้อมูลใน popup
   document.getElementById("popup-content").innerHTML = `
@@ -1063,10 +1067,8 @@ function payNow() {
 }
 
 
-// ตั้งค่า event listener สำหรับการเปลี่ยนแปลงข้อมูลในฟอร์มทุกฟิลด์
-document.getElementById("origin").addEventListener('change', calculatePrice);
-document.getElementById("destination").addEventListener('change', calculatePrice);
-document.getElementById("departure-date").addEventListener('change', calculatePrice);
-document.getElementById("departure-time").addEventListener('change', calculatePrice);
-document.getElementById("num-passengers").addEventListener('change', calculatePrice);
-document.getElementById("selectclass").addEventListener('change', calculatePrice);
+// ตั้งค่า event listener อย่างปลอดภัย (ตรวจสอบว่า element มีอยู่ในหน้า)
+['origin', 'destination', 'departure-date', 'departure-time', 'num-passengers', 'selectclass'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('change', calculatePrice);
+});

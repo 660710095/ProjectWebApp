@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .close-btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <section class="booking-section">
+        <form>
+            <label for="origin">ต้นทาง:</label>
+
+            <label for="destination">ปลายทาง:</label>
+          
+            <label for="departure-date">วันเดินทาง:</label>
+            <input type="date" id="departure-date">
+    
+            <label for="departure-time">เวลาขึ้น:</label>
+            <input type="time" id="departure-time">
+    
+            <label for="num-passengers">จำนวนผู้โดยสาร:</label>
+            <input type="number" id="num-passengers" min="1" value="1">
+    
+            <button type="button" class="search-btn" onclick="showPopup()">ยืนยัน</button>
+        </form>
+    </section>
+    
+    <div class="popup-overlay" id="popup-overlay"></div>
+    
+    <!-- Popup รายละเอียดการจอง -->
+    <div class="popup" id="booking-popup">
+        <h2>รายละเอียดการจอง</h2>
+        <p id="popup-content"></p>
+        <button class="close-btn" onclick="showPaymentSuccessPopup()">ชำระเงิน</button>
+    </div>
+
+    <!-- Popup การชำระเงินสำเร็จ -->
+    <div id="payment-success-popup" class="popup">
+        <h2 style="color: green;">✅ การชำระเงินสำเร็จ</h2>
+        <p>ขอบคุณที่ใช้บริการของเรา</p>
+        <button class="close-btn" onclick="closePaymentPopup()">ปิด</button>
+    </div>
+
+    <script>
+        function showPopup() {
+            const origin = document.getElementById('origin').value;
+            const destination = document.getElementById('destination').value;
+            const date = document.getElementById('departure-date').value;
+            const time = document.getElementById('departure-time').value;
+            const passengers = document.getElementById('num-passengers').value;
+            
+            if (!origin || !destination || !date || !time || !passengers) {
+                alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+                return;
+            }
+            
+            const popupContent = `
+            <strong>${translations[selectedLanguage]["origin_text"] || "Origin"}:</strong> ${origin}<br>
+            <strong>${translations[selectedLanguage]["destination_text"] || "Destination"}:</strong> ${destination}<br>
+            <strong>${translations[selectedLanguage]["departure_date_text"] || "Departure Date"}:</strong> ${date}<br>
+            <strong>${translations[selectedLanguage]["departure_time_text"] || "Time"}:</strong> ${time}<br>
+            <strong>${translations[selectedLanguage]["num_passengers_text"] || "Passengers"}:</strong> ${passengers}
+            `;
+
+            
+            document.getElementById('popup-content').innerHTML = popupContent;
+            document.getElementById('popup-overlay').style.display = 'block';
+            document.getElementById('booking-popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('popup-overlay').style.display = 'none';
+            document.getElementById('booking-popup').style.display = 'none';
+        }
+
+        function showPaymentSuccessPopup() {
+            closePopup(); // ปิด popup รายละเอียดก่อน
+            document.getElementById('popup-overlay').style.display = 'block';
+            document.getElementById('payment-success-popup').style.display = 'block';
+        }
+
+        function closePaymentPopup() {
+            document.getElementById('popup-overlay').style.display = 'none';
+            document.getElementById('payment-success-popup').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
