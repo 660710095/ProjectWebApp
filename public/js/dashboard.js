@@ -8,10 +8,47 @@ let currentFilter = 'all';
 let searchQuery = '';
 
 document.addEventListener('DOMContentLoaded', async () => {
+  // ตรวจสอบสิทธิ์ Admin (Role-Based Access Control)
+  const user = typeof SRT_API !== 'undefined' ? SRT_API.getUser() : { role: localStorage.getItem('userRole') };
+  const isAdmin = user && user.role === 'admin';
+
+  if (!isAdmin) {
+    renderAccessDenied();
+    return;
+  }
+
   await loadDashboardData();
   setupEventListeners();
   updateGreeting();
 });
+
+function renderAccessDenied() {
+  const container = document.querySelector('.dashboard-container');
+  if (container) {
+    container.innerHTML = `
+      <div style="max-width: 540px; margin: 80px auto; background: #ffffff; padding: 48px 36px; border-radius: 16px; border: 1px solid var(--dash-border); box-shadow: var(--dash-shadow-lg); text-align: center;">
+        <div style="width: 64px; height: 64px; background: #fee2e2; color: #dc2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 20px;">
+          <i class="fa-solid fa-lock"></i>
+        </div>
+        <h2 style="font-size: 22px; font-weight: 700; color: var(--dash-navy); margin-bottom: 8px;">สงวนสิทธิ์เฉพาะเจ้าหน้าที่ผู้ดูแลระบบ</h2>
+        <p style="font-size: 14px; color: var(--dash-text-muted); margin-bottom: 24px; line-height: 1.6;">
+          หน้านี้เป็นแดชบอร์ดสรุปภาพรวมและข้อมูลรายได้ สำหรับบัญชีผู้ดูแลระบบ (Admin) เท่านั้น กรุณาเข้าสู่ระบบด้วยบัญชีแอดมินเพื่อเข้าใช้งาน
+        </p>
+        <div style="display: flex; gap: 12px; justify-content: center;">
+          <a href="login.html" style="background: var(--dash-crimson); color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 600; text-decoration: none; font-size: 14px;">
+            <i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบแอดมิน
+          </a>
+          <a href="index.html" style="background: #f1f5f9; color: var(--dash-text); padding: 10px 20px; border-radius: 8px; font-weight: 600; text-decoration: none; font-size: 14px;">
+            <i class="fa-solid fa-house"></i> กลับหน้าหลัก
+          </a>
+        </div>
+        <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--dash-border); font-size: 12px; color: var(--dash-text-subtle);">
+          บัญชีทดสอบแอดมิน: <strong>admin@srt.co.th</strong> / รหัสผ่าน: <strong>admin123</strong>
+        </div>
+      </div>
+    `;
+  }
+}
 
 async function loadDashboardData() {
   const loadingIndicator = document.getElementById('table-loading');

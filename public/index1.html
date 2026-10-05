@@ -8,62 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
 </head>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const username = localStorage.getItem("username");
-      const userActions = document.querySelector(".user-actions");
-  
-      if (username && userActions) {
-        // ล้างปุ่มเดิม
-        userActions.innerHTML = "";
-  
-        // สร้าง element ชื่อผู้ใช้
-        const nameTag = document.createElement("span");
-        
-        nameTag.innerHTML = `<i class="fa-solid fa-user" style="font-size: 18px; color: #333;"></i> <span style="font-size: 16px;">${username}</span>`;
-        nameTag.style.display = "inline-flex";
-        nameTag.style.alignItems = "center";
-        nameTag.style.gap = "10px"; // ช่องว่างระหว่างไอคอนกับชื่อ
-        nameTag.style.marginRight = "10px";
-        nameTag.style.padding = "10px 16px";
-        nameTag.style.backgroundColor = "#f0f0f0";
-        nameTag.style.borderRadius = "20px";
-        nameTag.style.fontWeight = "bold";
-        nameTag.style.color = "#333";
-        nameTag.style.boxShadow = "0 2px 6px rgba(0, 0, 0, 0.1)";
-
-  
-        // สร้างปุ่ม logout
-        const logoutBtn = document.createElement("a");
-        logoutBtn.href = "#";
-        logoutBtn.innerHTML = `<i class="fa-solid fa-arrow-right-from-bracket"></i> <span data-translate="logout">ออกจากระบบ</span>`;
-        logoutBtn.style.color = "white";
-        logoutBtn.style.backgroundColor = "red";
-        logoutBtn.style.padding = "10px 15px";
-        logoutBtn.style.borderRadius = "8px";
-        logoutBtn.style.border = "none";
-        logoutBtn.style.fontWeight = "bold";
-        logoutBtn.style.cursor = "pointer";
-        logoutBtn.style.transition = "all 0.3s ease";
-        
-        logoutBtn.addEventListener("mouseover", () => {
-        logoutBtn.style.backgroundColor = "darkred";
-});
-logoutBtn.addEventListener("mouseout", () => {
-    logoutBtn.style.backgroundColor = "red";
-});
-
-        logoutBtn.addEventListener("click", () => {
-          localStorage.removeItem("username");
-          location.reload(); // รีโหลดหน้าเพื่อกลับไปแสดงปุ่มล็อกอิน
-        });
-  
-        // เพิ่มเข้า div user-actions
-        userActions.appendChild(nameTag);
-        userActions.appendChild(logoutBtn);
-      }
-    });
-  </script>
 <body>
     <header class="header">
         <img src="images/logo1.png" alt="State Railway of Thailand" class="logo">
@@ -271,3 +215,5 @@ logoutBtn.addEventListener("mouseout", () => {
     
 </body>
 </html>
+
+

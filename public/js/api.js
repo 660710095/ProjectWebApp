@@ -18,6 +18,7 @@ const SRT_API = {
         if (res.ok) {
           localStorage.setItem('username', data.user.name);
           localStorage.setItem('userEmail', data.user.email);
+          localStorage.setItem('userRole', data.user.role || 'user');
           return { success: true, user: data.user };
         }
         return { success: false, error: data.error || 'เข้าสู่ระบบไม่สำเร็จ' };
@@ -28,11 +29,32 @@ const SRT_API = {
     // Fallback: localStorage
     const storedPassword = localStorage.getItem(email);
     const storedName = localStorage.getItem(email + '_name');
+    const storedRole = email === 'admin@srt.co.th' ? 'admin' : (localStorage.getItem(email + '_role') || 'user');
     if (storedPassword === password) {
       localStorage.setItem('username', storedName || 'User');
-      return { success: true, user: { name: storedName || 'User', email } };
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('userRole', storedRole);
+      return { success: true, user: { name: storedName || 'User', email, role: storedRole } };
     }
     return { success: false, error: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง' };
+  },
+
+  getUser() {
+    return {
+      name: localStorage.getItem('username') || '',
+      email: localStorage.getItem('userEmail') || '',
+      role: (localStorage.getItem('userRole') || 'user').toLowerCase()
+    };
+  },
+
+  isAdmin() {
+    return this.getUser().role === 'admin';
+  },
+
+  logout() {
+    localStorage.removeItem('username');
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('userRole');
   },
 
   async register(username, email, password) {

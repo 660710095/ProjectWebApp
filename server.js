@@ -121,6 +121,7 @@ const server = http.createServer(async (req, res) => {
           name: username,
           email: email.toLowerCase(),
           password,
+          role: 'user',
           createdAt: new Date().toISOString()
         };
         db.users.push(newUser);
@@ -129,7 +130,7 @@ const server = http.createServer(async (req, res) => {
         return sendJson(res, 201, {
           success: true,
           message: 'ลงทะเบียนสำเร็จ',
-          user: { id: newUser.id, name: newUser.name, email: newUser.email }
+          user: { id: newUser.id, name: newUser.name, email: newUser.email, role: newUser.role }
         });
       }
 
@@ -150,7 +151,7 @@ const server = http.createServer(async (req, res) => {
         return sendJson(res, 200, {
           success: true,
           message: 'เข้าสู่ระบบสำเร็จ',
-          user: { id: user.id, name: user.name, email: user.email }
+          user: { id: user.id, name: user.name, email: user.email, role: user.role || 'user' }
         });
       }
 

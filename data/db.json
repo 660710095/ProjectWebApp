@@ -1,10 +1,19 @@
 {
   "users": [
     {
+      "id": "u-admin",
+      "name": "SRT Administrator",
+      "email": "admin@srt.co.th",
+      "password": "admin123",
+      "role": "admin",
+      "createdAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
       "id": "u-001",
       "name": "Manorin",
       "email": "demo@srt.co.th",
       "password": "password123",
+      "role": "user",
       "createdAt": "2026-01-01T08:00:00.000Z"
     }
   ],
