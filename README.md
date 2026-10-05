@@ -100,9 +100,3 @@ node server.js
 👉 **[http://localhost:3000](http://localhost:3000)**
 
 *(หรือสามารถดับเบิลคลิกเปิดไฟล์ `public/index.html` แบบ Offline ก็ยังใช้งานได้ด้วยระบบ Auto-fallback)*
-
----
-
-## 👥 ผู้พัฒนา (Developer)
-- **Manorin** (Silpakorn University)
-- License: MIT
